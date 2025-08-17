@@ -3,8 +3,7 @@ body {
   background-color: #1ad079;
 }
 .container {
-  width: 500px;
-  margin: auto;
+padding: 20px;
   background-color: #3f97b9;
   border-radius: 10px;
 }
