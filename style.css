@@ -6,6 +6,7 @@
 }
 body {
   background-color: #1ad079;
+  touch-action: none;
 }
 .container {
   width: 500px;
