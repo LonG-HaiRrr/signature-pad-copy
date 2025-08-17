@@ -1,9 +1,4 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
+
 body {
   background-color: #1ad079;
 }
@@ -26,16 +21,11 @@ button {
   margin: 0 5px;
   padding: 5px 10px;
   cursor: pointer;
-  background-color: #1ad079;
+  background-color: #0ce47b;
   border: none;
   border-radius: 5px;
 }
-#show {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
+
 .signature-img {
   width: 100px;
   height: 100px;
