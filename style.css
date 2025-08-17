@@ -10,12 +10,12 @@ body {
 .container {
   width: 500px;
   margin: auto;
-  background-color: #ffffff;
+  background-color: #3f97b9;
   border-radius: 10px;
 }
 canvas {
   margin: 30px;
-  background-color: #ffffff;
+  background-color: #ca9c9c;
   border-radius: 10px;
   border: 3px solid #1ad079;
 }
@@ -43,4 +43,8 @@ button {
 .error {
   color: #f66646;
   margin: 10px 0;
+}
+#signature-pad {
+  width: 400px !important;
+  height: 400px !important;
 }
