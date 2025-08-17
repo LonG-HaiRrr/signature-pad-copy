@@ -1,15 +1,21 @@
-
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 body {
   background-color: #1ad079;
 }
 .container {
-padding: 20px;
-  background-color: #3f97b9;
+  width: 500px;
+  margin: auto;
+  background-color: #ffffff;
   border-radius: 10px;
 }
 canvas {
   margin: 30px;
-  background-color: #ca9c9c;
+  background-color: #ffffff;
   border-radius: 10px;
   border: 3px solid #1ad079;
 }
@@ -20,11 +26,16 @@ button {
   margin: 0 5px;
   padding: 5px 10px;
   cursor: pointer;
-  background-color: #0ce47b;
+  background-color: #1ad079;
   border: none;
   border-radius: 5px;
 }
-
+#show {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .signature-img {
   width: 100px;
   height: 100px;
@@ -32,8 +43,4 @@ button {
 .error {
   color: #f66646;
   margin: 10px 0;
-}
-#signature-pad {
-  width: 200px !important;
-  height: 200px !important;
 }
