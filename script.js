@@ -1,6 +1,5 @@
 const canvas = document.getElementById("signature-pad");
 const clearBtn = document.getElementById("clear-btn");
-const saveBtn = document.getElementById("save-btn");
 const context = canvas.getContext("2d");
 let display = document.getElementById("show");
 let painting = false;
@@ -88,24 +87,7 @@ clearBtn.addEventListener("click", () => {
   display.innerHTML = "";
 });
 
-saveBtn.addEventListener("click", () => {
-  if (drawStart) {
-    const dataURL = canvas.toDataURL();
-    let img = document.createElement("img");
-    img.setAttribute("class", "signature-img");
-    img.src = dataURL;
-    const aFilename = document.createElement("a");
-    aFilename.href = dataURL;
-    aFilename.download = "signature.png";
-    const filenameTextNode = document.createTextNode("signature.png");
-    aFilename.appendChild(filenameTextNode);
-    aFilename.appendChild(img);
-    display.appendChild(img);
-    display.appendChild(aFilename);
-  } else {
-    display.innerHTML = "<span class='error'>Please sign before saving</span>";
-  }
-});
+
 
 loadState();
 window.onload = (event) => {
@@ -113,3 +95,20 @@ window.onload = (event) => {
   context.clearRect(0, 0, canvas.width, canvas.height);
   saveState();
 };
+
+function resizeCanvas() {
+  // Nếu là laptop (ví dụ: chiều rộng màn hình > 768px), set kích thước lớn
+  if (window.innerWidth > 1008) {
+    canvas.width = 800;
+    canvas.height = 600;
+  } else {
+    canvas.width = 300;
+    canvas.height = 200;
+  }
+  // Optional: clear canvas khi thay đổi size (tránh vỡ hình cũ)
+  context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Gọi khi trang tải hoặc resize
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('load', resizeCanvas);
