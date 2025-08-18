@@ -17,7 +17,7 @@ canvas {
 }
 
 button {
-  margin: 10px 5px 10px;
+  margin: 5px 6px 5px;
   padding: 5px 10px;
   cursor: pointer;
   background-color: #0bc9c9;
@@ -99,7 +99,7 @@ button {
   .settings {
     padding: 0 0 0 10px;
     font-size: 10px;
-    background-color: #023347;
+    background-color: #5e5f07;
     margin: 0;
   }
 
