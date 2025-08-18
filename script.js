@@ -206,8 +206,15 @@ answerBtn.addEventListener('click', () => {
   // Hiện kana bên dưới phiên âm
   // Có thể cho vào thẻ span, div, hoặc append vào kanaInfo
   // Ví dụ hiển thị kana lớn phía trên phiên âm:
-  kanaInfo.innerHTML = `<h1 style="font-size: 4rem;">${curr.kana}</h1>
-Phiên âm: ${curr.romaji}`;
+  kanaInfo.innerHTML = `
+  <div class="ky_tu">
+    ${curr.kana}
+  </div>
+
+  <div class="phien_am_sau_bam">
+    Phiên âm: <br> ${curr.romaji}
+  </div>
+  `;
 });
 
 function showCurrentKana() {

@@ -39,9 +39,25 @@ button {
   margin: 10px 0;
 }
 
-
 .zoneve {
   display: flex;
 }
+.phien_am_sau_bam {
+  font-size: 90px;
+}
+.ky_tu {
+  font-size: 130px;  
+  color: #aed111;    
+  background-image: url('1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+  @media (max-width: 1000px) {
+.zoneve {
+  display: block;
+}
+  }
 
+  
 
