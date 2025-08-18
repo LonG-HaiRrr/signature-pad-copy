@@ -183,7 +183,7 @@ function showCurrentKana() {
     let curr = activeList[currentIdx];
     kanaInfo.innerHTML = ` 
   <div class="phien_am_sau_bam">
-    Phiên âm: ${curr.romaji}
+    Phiên âm trước: ${curr.romaji}
   </div>`;
     countdown.textContent = activeList.length - currentIdx - 1;
     // Xoá ảnh đáp án nếu có (chỉ giữ phần chữ & phiên âm)
