@@ -230,7 +230,9 @@ answerBtn.addEventListener('click', () => {
   
   <div class="chu_chuan" style="display: flex; justify-content: center; align-items: center;>
     <div class="textt">chữ viết tay: </div>
-    <img src="${curr.romaji}.png"/>
+    <div class="chuan_viettay">
+      <img src="${curr.romaji}.png"/>
+    </div>
   </div>
   `;
 });

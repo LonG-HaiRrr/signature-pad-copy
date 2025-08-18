@@ -109,6 +109,9 @@ button {
     font-size: 30px !important;
     display: block !important;
   }
+  .chuan_viettay {
+    transform: scale(0.5) translateY(-0px);
+    transform-origin: top center; /* giữ điểm neo khi scale */  }
 }
 
   
