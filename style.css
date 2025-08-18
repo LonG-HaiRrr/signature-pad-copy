@@ -60,8 +60,6 @@ button {
 }
 .ky_tu {
   font-size: 130px;  
-  width: 180px;
-  height: 180px;
     display: flex;
   justify-content: center; /* Căn giữa ngang */
   color: #aed111;    
@@ -104,10 +102,12 @@ button {
   }
 
   .phien_am_sau_bam {
-      font-size: 15px;
+      font-size: 15px !important;
+      display: block !important;
   }
   .ky_tu {
-    font-size: 30px;
+    font-size: 30px !important;
+    display: block !important;
   }
 }
 

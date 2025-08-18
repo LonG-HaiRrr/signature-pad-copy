@@ -215,9 +215,7 @@ const answerBtn = document.getElementById('answerBtn');
 
 answerBtn.addEventListener('click', () => {
   let curr = activeList[currentIdx];
-  // Hiện kana bên dưới phiên âm
-  // Có thể cho vào thẻ span, div, hoặc append vào kanaInfo
-  // Ví dụ hiển thị kana lớn phía trên phiên âm:
+
   kanaInfo.innerHTML = `
   <div class="phien_am_sau_bam">
     Phiên âm: ${curr.romaji}
@@ -237,10 +235,4 @@ answerBtn.addEventListener('click', () => {
   `;
 });
 
-// function showCurrentKana() {
-//   let curr = activeList[currentIdx];
-//   kanaInfo.innerHTML = `Phiên âm: ${curr.romaji}`;
-//   countdown.textContent = activeList.length - currentIdx - 1;
-//   let imgs = infoBox.querySelectorAll('img');
-//   imgs.forEach(el => el.remove());
-// }
+
