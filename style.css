@@ -62,7 +62,7 @@ button {
   font-size: 130px;  
     display: flex;
   justify-content: center; /* Căn giữa ngang */
-  color: #aed111;    
+  color: #4e0158;    
   background-image: url('1.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -86,7 +86,7 @@ button {
     display: block;
   }
   .benphai {
-    margin: 20px;
+    margin: 0 20px 0 20px;
     min-width: 300px !important;
     min-height: 300px !important;
     font-size: small;
@@ -97,7 +97,7 @@ button {
   height: 20px;
   }
   .settings {
-    padding: 10px;
+    padding-left: 10px;
     font-size: 10px;
   }
 
@@ -108,10 +108,16 @@ button {
   .ky_tu {
     font-size: 30px !important;
     display: block !important;
+    
   }
   .chuan_viettay {
     transform: scale(0.5) translateY(-0px);
-    transform-origin: top center; /* giữ điểm neo khi scale */  }
+    transform-origin: top center; /* giữ điểm neo khi scale */ 
+  }
+
+  #countdown {
+    font-size: 8px;
+  }
 }
 
   
