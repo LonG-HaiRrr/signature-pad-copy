@@ -62,9 +62,6 @@ button {
   font-size: 130px;  
   display: flex;
   color: #4e0158;    
-  background-image: url('a.png');
-  background-position: center;
-  background-repeat: no-repeat;
 }
 .settings {
   margin-bottom: 10px;
