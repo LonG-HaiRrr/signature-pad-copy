@@ -99,7 +99,7 @@ button {
   .settings {
     padding: 0 0 0 10px;
     font-size: 10px;
-    background-color: #17075f;
+    background-color: #5f071d;
     margin: 0;
   }
 
@@ -126,9 +126,7 @@ button {
     color: #4e0158;
     font-size: 8px;
   }
-  #infoBox {
-    min-width: 374px !important;
-  }
+
 }
 
   
