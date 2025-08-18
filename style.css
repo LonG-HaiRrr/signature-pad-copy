@@ -104,9 +104,11 @@ button {
   }
 
   .phien_am_sau_bam {
+      color: #9b0c0c;
+      font-weight: bolder;
+      text-align: center;
       font-size: 15px !important;
-      display: block !important;
-  }
+    }
   .ky_tu {
     font-size: 30px !important;
     display: block !important;
@@ -123,6 +125,9 @@ button {
   .textt{
     color: #4e0158;
     font-size: 8px;
+  }
+  #infoBox {
+    min-width: 374px !important;
   }
 }
 
