@@ -112,3 +112,108 @@ function resizeCanvas() {
 // Gọi khi trang tải hoặc resize
 window.addEventListener('resize', resizeCanvas);
 window.addEventListener('load', resizeCanvas);
+
+
+
+
+
+
+// Dữ liệu chữ cái tiếng Nhật (Hiragana mẫu)
+const kanaList = [
+    {kana: 'あ', romaji: 'a'},  {kana: 'い', romaji: 'i'},  {kana: 'う', romaji: 'u'},  {kana: 'え', romaji: 'e'},  {kana: 'お', romaji: 'o'},
+    {kana: 'か', romaji: 'ka'}, {kana: 'き', romaji: 'ki'}, {kana: 'く', romaji: 'ku'}, {kana: 'け', romaji: 'ke'}, {kana: 'こ', romaji: 'ko'},
+    {kana: 'さ', romaji: 'sa'}, {kana: 'し', romaji: 'shi'},{kana: 'す', romaji: 'su'}, {kana: 'せ', romaji: 'se'}, {kana: 'そ', romaji: 'so'},
+    {kana: 'た', romaji: 'ta'}, {kana: 'ち', romaji: 'chi'},{kana: 'つ', romaji: 'tsu'},{kana: 'て', romaji: 'te'}, {kana: 'と', romaji: 'to'},
+    {kana: 'な', romaji: 'na'}, {kana: 'に', romaji: 'ni'}, {kana: 'ぬ', romaji: 'nu'}, {kana: 'ね', romaji: 'ne'}, {kana: 'の', romaji: 'no'},
+    {kana: 'は', romaji: 'ha'}, {kana: 'ひ', romaji: 'hi'}, {kana: 'ふ', romaji: 'fu'}, {kana: 'へ', romaji: 'he'}, {kana: 'ほ', romaji: 'ho'},
+    {kana: 'ま', romaji: 'ma'}, {kana: 'み', romaji: 'mi'}, {kana: 'む', romaji: 'mu'}, {kana: 'め', romaji: 'me'}, {kana: 'も', romaji: 'mo'},
+    {kana: 'や', romaji: 'ya'}, {kana: 'ゆ', romaji: 'yu'}, {kana: 'よ', romaji: 'yo'},
+    {kana: 'ら', romaji: 'ra'}, {kana: 'り', romaji: 'ri'}, {kana: 'る', romaji: 'ru'}, {kana: 'れ', romaji: 're'}, {kana: 'ろ', romaji: 'ro'},
+    {kana: 'わ', romaji: 'wa'}, {kana: 'を', romaji: 'wo'}, {kana: 'ん', romaji: 'n'}
+];
+
+// DOM elements
+const startInput = document.getElementById('startChar');
+const endInput = document.getElementById('endChar');
+const startBtn = document.getElementById('startBtn');
+const infoBox = document.getElementById('infoBox');
+const kanaInfo = document.getElementById('kanaInfo');
+const audioBtn = document.getElementById('audioBtn');
+const nextBtn = document.getElementById('nextBtn');
+const countdown = document.getElementById('remainCount');
+
+let activeList = [];
+let currentIdx = 0;
+
+// Tính năng luyện chữ cái
+startBtn.addEventListener('click', () => {
+    let startVal = startInput.value.trim().toLowerCase();
+    let endVal = endInput.value.trim().toLowerCase();
+    let startIndex = kanaList.findIndex(k => k.romaji === startVal);
+    let endIndex = kanaList.findIndex(k => k.romaji === endVal);
+    if (startIndex === -1 || endIndex === -1 || startIndex > endIndex) {
+        alert('Vui lòng nhập đúng chữ bắt đầu và kết thúc (phải nằm trong bảng Hiragana và theo thứ tự).');
+        infoBox.style.display = 'none';
+        return;
+    }
+    activeList = kanaList.slice(startIndex, endIndex + 1);
+    shuffleArray(activeList);
+    currentIdx = 0;
+    infoBox.style.display = 'flex';
+    showCurrentKana();
+});
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function showCurrentKana() {
+    let curr = activeList[currentIdx];
+    kanaInfo.innerHTML = `<p>Phiên âm: ${curr.romaji}</p>`;
+    countdown.textContent = activeList.length - currentIdx - 1;
+    // Xoá ảnh đáp án nếu có (chỉ giữ phần chữ & phiên âm)
+    let imgs = infoBox.querySelectorAll('img');
+    imgs.forEach(el => el.remove());
+}
+
+audioBtn.addEventListener('click', () => {
+    let curr = activeList[currentIdx];
+    let audioFile = `audio/${curr.kana}.mp3`;
+    let audio = new Audio(audioFile);
+    audio.onerror = () => {
+        alert('Chữ này chưa hỗ trợ!');
+    };
+    audio.play();
+});
+
+nextBtn.addEventListener('click', () => {
+    if (currentIdx + 1 < activeList.length) {
+        currentIdx++;
+        showCurrentKana();
+    } else {
+        alert('Đã hoàn thành tất cả các chữ cái!');
+        infoBox.style.display = 'none';
+    }
+});
+
+const answerBtn = document.getElementById('answerBtn');
+
+answerBtn.addEventListener('click', () => {
+  let curr = activeList[currentIdx];
+  // Hiện kana bên dưới phiên âm
+  // Có thể cho vào thẻ span, div, hoặc append vào kanaInfo
+  // Ví dụ hiển thị kana lớn phía trên phiên âm:
+  kanaInfo.innerHTML = `<h1 style="font-size: 4rem;">${curr.kana}</h1>
+Phiên âm: ${curr.romaji}`;
+});
+
+function showCurrentKana() {
+  let curr = activeList[currentIdx];
+  kanaInfo.innerHTML = `Phiên âm: ${curr.romaji}`;
+  countdown.textContent = activeList.length - currentIdx - 1;
+  let imgs = infoBox.querySelectorAll('img');
+  imgs.forEach(el => el.remove());
+}

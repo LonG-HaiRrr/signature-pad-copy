@@ -5,29 +5,22 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-color: #1ad079;
+  background-color: #77185f;
   touch-action: none;
 }
-.container {
-  width: 500px;
-  margin: auto;
-  background-color: #ffffff;
-  border-radius: 10px;
-}
+
 canvas {
   margin: 30px;
   background-color: #ffffff;
   border-radius: 10px;
   border: 3px solid #1ad079;
 }
-.btn {
-  margin-bottom: 10px;
-}
+
 button {
   margin: 0 5px;
   padding: 5px 10px;
   cursor: pointer;
-  background-color: #1ad079;
+  background-color: #0bc9c9;
   border: none;
   border-radius: 5px;
 }
@@ -46,5 +39,9 @@ button {
   margin: 10px 0;
 }
 
+
+.zoneve {
+  display: flex;
+}
 
 
