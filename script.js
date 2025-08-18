@@ -83,6 +83,7 @@ canvas.addEventListener("touchmove", draw);
 clearBtn.addEventListener("click", () => {
   drawStart = false;
   context.clearRect(0, 0, canvas.width, canvas.height);
+  setBackgroundImage();
   saveState();
   display.innerHTML = "";
 });
@@ -96,22 +97,28 @@ window.onload = (event) => {
   saveState();
 };
 
-function resizeCanvas() {
-  // Nếu là laptop (ví dụ: chiều rộng màn hình > 768px), set kích thước lớn
-  if (window.innerWidth > 1008) {
-    canvas.width = 800;
-    canvas.height = 600;
-  } else {
-    canvas.width = 300;
-    canvas.height = 200;
-  }
-  // Optional: clear canvas khi thay đổi size (tránh vỡ hình cũ)
-  context.clearRect(0, 0, canvas.width, canvas.height);
+function setBackgroundImage() {
+    const img = new Image();
+    img.src = "123.png";
+    img.onload = function() {
+        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+    }
 }
 
-// Gọi khi trang tải hoặc resize
+function resizeCanvas() {
+    if (window.innerWidth > 1008) {
+        canvas.width = 600; canvas.height = 600;
+    } else {
+        canvas.width = 300; canvas.height = 300;
+    }
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    setBackgroundImage();
+}
+
 window.addEventListener('resize', resizeCanvas);
 window.addEventListener('load', resizeCanvas);
+
+
 
 
 
@@ -147,6 +154,8 @@ let currentIdx = 0;
 
 // Tính năng luyện chữ cái
 startBtn.addEventListener('click', () => {
+
+    setBackgroundImage();
     let startVal = startInput.value.trim().toLowerCase();
     let endVal = endInput.value.trim().toLowerCase();
     let startIndex = kanaList.findIndex(k => k.romaji === startVal);
@@ -210,16 +219,20 @@ answerBtn.addEventListener('click', () => {
   // Có thể cho vào thẻ span, div, hoặc append vào kanaInfo
   // Ví dụ hiển thị kana lớn phía trên phiên âm:
   kanaInfo.innerHTML = `
-  <div class="ky_tu">
-    ${curr.kana}
-  </div>
-  
-  <div class="chu_chuan">
-    <img src="${curr.romaji}.png"/>
+  <div class="phien_am_sau_bam">
+    Phiên âm: ${curr.romaji}
   </div>
 
-  <div class="phien_am_sau_bam">
-    Phiên âm: <br> ${curr.romaji}
+  <div class="chudanhmay" style="display: flex; justify-content: space-evenly; align-items: center;">
+    <div class="textt">chữ đánh máy: </div>
+    <div class="ky_tu">
+      ${curr.kana}
+    </div>
+  </div>
+  
+  <div class="chu_chuan" style="display: flex; justify-content: center; align-items: center;>
+    <div class="textt">chữ viết tay: </div>
+    <img src="${curr.romaji}.png"/>
   </div>
   `;
 });
