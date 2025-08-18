@@ -97,9 +97,10 @@ button {
   height: 20px;
   }
   .settings {
-    padding-left: 10px;
+    padding: 0 0 0 10px;
     font-size: 10px;
     background-color: #024726;
+    margin: 0;
   }
 
   .phien_am_sau_bam {
