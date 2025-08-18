@@ -17,7 +17,7 @@ canvas {
 }
 
 button {
-  margin: 0 5px;
+  margin: 10px 5px 10px;
   padding: 5px 10px;
   cursor: pointer;
   background-color: #0bc9c9;
@@ -39,25 +39,41 @@ button {
   margin: 10px 0;
 }
 
+.benphai {
+  background-color: #ffffff;
+  min-width: 500px;
+  min-height: 500px;
+  margin-top: 30px
+}
+
 .zoneve {
-  display: flex;
+  /* hiện ngang -  giao diện lap */
+  display: flex; 
 }
 .phien_am_sau_bam {
-  font-size: 90px;
+  font-size: 40px;
+  display: flex;
+  justify-content: center; /* Căn giữa ngang */
+  align-items: center;     /* Căn giữa dọc */
 }
 .ky_tu {
   font-size: 130px;  
+  width: 180px;
+  height: 180px;
+    display: flex;
+  justify-content: center; /* Căn giữa ngang */
   color: #aed111;    
   background-image: url('1.png');
-  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-  @media (max-width: 1000px) {
-.zoneve {
-  display: block;
-}
+
+
+@media (max-width: 1000px) {
+  .zoneve {
+    display: block;
   }
+}
 
   
 

@@ -172,7 +172,10 @@ function shuffleArray(array) {
 
 function showCurrentKana() {
     let curr = activeList[currentIdx];
-    kanaInfo.innerHTML = `<p>Phiên âm: ${curr.romaji}</p>`;
+    kanaInfo.innerHTML = ` 
+  <div class="phien_am_sau_bam">
+    Phiên âm: ${curr.romaji}
+  </div>`;
     countdown.textContent = activeList.length - currentIdx - 1;
     // Xoá ảnh đáp án nếu có (chỉ giữ phần chữ & phiên âm)
     let imgs = infoBox.querySelectorAll('img');
@@ -210,6 +213,10 @@ answerBtn.addEventListener('click', () => {
   <div class="ky_tu">
     ${curr.kana}
   </div>
+  
+  <div class="chu_chuan">
+    <img src="${curr.romaji}.png"/>
+  </div>
 
   <div class="phien_am_sau_bam">
     Phiên âm: <br> ${curr.romaji}
@@ -217,10 +224,10 @@ answerBtn.addEventListener('click', () => {
   `;
 });
 
-function showCurrentKana() {
-  let curr = activeList[currentIdx];
-  kanaInfo.innerHTML = `Phiên âm: ${curr.romaji}`;
-  countdown.textContent = activeList.length - currentIdx - 1;
-  let imgs = infoBox.querySelectorAll('img');
-  imgs.forEach(el => el.remove());
-}
+// function showCurrentKana() {
+//   let curr = activeList[currentIdx];
+//   kanaInfo.innerHTML = `Phiên âm: ${curr.romaji}`;
+//   countdown.textContent = activeList.length - currentIdx - 1;
+//   let imgs = infoBox.querySelectorAll('img');
+//   imgs.forEach(el => el.remove());
+// }
