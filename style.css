@@ -60,10 +60,9 @@ button {
 }
 .ky_tu {
   font-size: 130px;  
-    display: flex;
-  justify-content: center; /* Căn giữa ngang */
+  display: flex;
   color: #4e0158;    
-  background-image: url('1.png');
+  background-image: url('a.png');
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -122,8 +121,8 @@ button {
   #countdown {
     font-size: 8px;
   }
-  .textt{
-    color: #4e0158;
+  .textt, .chu_chuan{
+    color: #06ad51;
     font-size: 8px;
   }
 

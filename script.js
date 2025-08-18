@@ -221,7 +221,7 @@ answerBtn.addEventListener('click', () => {
     Phiên âm: ${curr.romaji}
   </div>
 
-  <div class="chudanhmay" style="display: flex; justify-content: space-evenly; align-items: center;">
+  <div class="chudanhmay" style="display: flex; justify-content: center; align-items: center;">
     <div class="textt">chữ đánh máy: </div>
     <div class="ky_tu">
       ${curr.kana}
@@ -229,7 +229,7 @@ answerBtn.addEventListener('click', () => {
   </div>
   
   <div class="chu_chuan" style="display: flex; justify-content: center; align-items: center;>
-    <div class="textt">chữ viết tay: </div>
+    <div class="textt2">chữ viết tay: </div>
     <div class="chuan_viettay">
       <img src="${curr.romaji}.png"/>
     </div>
