@@ -90,6 +90,10 @@ button {
     min-height: 300px !important;
     font-size: small;
   }
+  .chu_nhap_vao {
+  max-width: 60px;
+  height: 40px;
+  }
 }
 
   
