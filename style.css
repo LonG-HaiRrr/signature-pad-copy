@@ -76,7 +76,12 @@ button {
   max-width: 100px;
   height: 30px;
 }
-
+#clear-btn {
+  margin-left: 20px;
+  background-color: #f66646;
+  color: #000000;
+  font-weight: bolder;
+}
 @media (max-width: 990px) {
   .zoneve {
     display: block;
@@ -122,7 +127,9 @@ button {
     color: #06ad51;
     font-size: 8px;
   }
-
+  #clear-btn {
+    margin: 5px 6px;
+  }
 }
 
   
