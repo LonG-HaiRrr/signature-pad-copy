@@ -45,7 +45,14 @@ button {
   min-height: 500px;
   margin-top: 30px
 }
-
+#strokeWidth {
+  font-size: 16px;
+  padding: 2px;
+}
+#colorPickerBtn {
+  vertical-align: middle;
+  cursor: pointer;
+}
 .zoneve {
   /* hiện ngang -  giao diện lap */
   display: flex; 
@@ -82,6 +89,14 @@ button {
   color: #000000;
   font-weight: bolder;
 }
+
+
+
+
+
+
+
+
 @media (max-width: 990px) {
   .zoneve {
     display: block;
