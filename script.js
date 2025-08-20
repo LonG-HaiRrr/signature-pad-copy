@@ -225,7 +225,7 @@ answerBtn.addEventListener('click', () => {
 
 // Lưu màu và kích thước hiện tại
 let currentStrokeColor = '#000000'; // mặc định ban đầu màu vẽ
-let currentStrokeWidth = 1;
+let currentStrokeWidth = 10;
 
 strokeWidthSelect.addEventListener('change', function () {
   currentStrokeWidth = parseInt(this.value);
@@ -244,7 +244,7 @@ function draw(e) {
   }
 
   context.lineWidth = currentStrokeWidth;
-  context.lineCap = "round";
+  context.lineCap = "square";
   context.lineJoin = "round";
   context.strokeStyle = currentStrokeColor;
 
