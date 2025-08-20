@@ -231,38 +231,31 @@ strokeWidthSelect.addEventListener('change', function () {
 // Gán vào context mỗi lần vẽ
 function draw(e) {
   if (!painting) return;
-
-  // chặn cuộn trên mobile khi đang kéo vẽ
-  if (e.cancelable) e.preventDefault();
-
-  // Lấy toạ độ đúng theo kích thước thật của canvas (khắc phục mobile)
-  const rect = canvas.getBoundingClientRect();
-  let cx, cy;
+  let clientX, clientY;
   if (e.type.startsWith("touch")) {
-    cx = e.touches[0].clientX;
-    cy = e.touches.clientY;
+    clientX = e.touches[0].clientX;
+    clientY = e.touches[0].clientY;
   } else {
-    cx = e.clientX;
-    cy = e.clientY;
+    clientX = e.clientX;
+    clientY = e.clientY;
   }
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  const x = (cx - rect.left) * scaleX;
-  const y = (cy - rect.top) * scaleY;
 
-  // dùng giá trị bạn đã thêm (strokeWidthSelect, colorPickerInput)
-  const w = parseInt(strokeWidthSelect?.value || '2', 10);
-  const color = colorPickerInput?.value || 'black';
-
-  context.lineWidth = w;
+  context.lineWidth = 10;
   context.lineCap = "round";
   context.lineJoin = "round";
-  context.strokeStyle = color;
+  context.strokeStyle = "red";
 
-  context.lineTo(x, y);
-  context.stroke();
-  context.beginPath();
-  context.moveTo(x, y);
+  const x = clientX - canvas.offsetLeft;
+  const y = clientY - canvas.offsetTop;
+
+  if (painting) {
+    context.lineTo(x, y);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(x, y);
+  } else {
+    context.moveTo(x, y);
+  }
 }
 
 
