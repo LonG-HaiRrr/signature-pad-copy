@@ -1,9 +1,22 @@
 const canvas = document.getElementById("signature-pad");
 const clearBtn = document.getElementById("clear-btn");
+const answerBtn = document.getElementById('answerBtn');
+
 const context = canvas.getContext("2d");
 let display = document.getElementById("show");
 let painting = false;
 let drawStart = false;
+
+// DOM elements
+const startInput = document.getElementById('startChar');
+const endInput = document.getElementById('endChar');
+const startBtn = document.getElementById('startBtn');
+const infoBox = document.getElementById('infoBox');
+const kanaInfo = document.getElementById('kanaInfo');
+const audioBtn = document.getElementById('audioBtn');
+const nextBtn = document.getElementById('nextBtn');
+const countdown = document.getElementById('remainCount');
+
 
 function startPosition(e) {
   painting = true;
@@ -139,16 +152,6 @@ const kanaList = [
     {kana: 'わ', romaji: 'wa'}, {kana: 'を', romaji: 'wo'}, {kana: 'ん', romaji: 'n'}
 ];
 
-// DOM elements
-const startInput = document.getElementById('startChar');
-const endInput = document.getElementById('endChar');
-const startBtn = document.getElementById('startBtn');
-const infoBox = document.getElementById('infoBox');
-const kanaInfo = document.getElementById('kanaInfo');
-const audioBtn = document.getElementById('audioBtn');
-const nextBtn = document.getElementById('nextBtn');
-const countdown = document.getElementById('remainCount');
-
 let activeList = [];
 let currentIdx = 0;
 
@@ -203,6 +206,10 @@ audioBtn.addEventListener('click', () => {
 
 nextBtn.addEventListener('click', () => {
     if (currentIdx + 1 < activeList.length) {
+        drawStart = false;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        setBackgroundImage();
+        display.innerHTML = "";
         currentIdx++;
         showCurrentKana();
     } else {
@@ -211,7 +218,6 @@ nextBtn.addEventListener('click', () => {
     }
 });
 
-const answerBtn = document.getElementById('answerBtn');
 
 answerBtn.addEventListener('click', () => {
   let curr = activeList[currentIdx];
