@@ -108,7 +108,7 @@ button {
   .settings {
     padding: 0 0 0 10px;
     font-size: 10px;
-    background-color: #d15f0e;
+    background-color: #0ed166;
     margin: 0;
   }
 
@@ -140,14 +140,14 @@ button {
   }
   button {
   margin: 5px 6px 5px 0px;
-  padding: 5px 10px;
+  padding: 3px 10px;
   cursor: pointer;
   background-color: #0bc9c9;
   border: none;
   border-radius: 5px;
   }
   #strokeWidth {
-      width:30px;
+      width:60px;
   }
 }
 

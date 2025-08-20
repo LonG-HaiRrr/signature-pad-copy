@@ -214,6 +214,7 @@ answerBtn.addEventListener('click', () => {
   </div>
   
   <div class="chu_chuan" style="display: flex; justify-content: center; align-items: center;>
+    <div class="textt2">chữ viết tay: </div>
     <div class="chuan_viettay">
       <img src="hiragana/${curr.romaji}.png"/>
     </div>
