@@ -28,10 +28,10 @@ function draw(e) {
     clientY = e.clientY;
   }
 
-  context.lineWidth = 10;
+  context.lineWidth = 2;
   context.lineCap = "round";
   context.lineJoin = "round";
-  context.strokeStyle = "red";
+  context.strokeStyle = "black";
 
   const x = clientX - canvas.offsetLeft;
   const y = clientY - canvas.offsetTop;
