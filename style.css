@@ -82,6 +82,9 @@ button {
   color: #000000;
   font-weight: bolder;
 }
+  
+
+
 @media (max-width: 990px) {
   .zoneve {
     display: block;
