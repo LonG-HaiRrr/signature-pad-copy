@@ -61,10 +61,13 @@ canvas.addEventListener("mouseup", finishedPosition);
 canvas.addEventListener("mousemove", draw);
 
 canvas.addEventListener("touchstart", (e) => {
-    painting = true; drawStart = true; startPosition(e);
-  }, { passive: false });
-  canvas.addEventListener("touchend", finishedPosition, { passive: false });
-  canvas.addEventListener("touchmove", draw, { passive: false });
+  painting = true;
+  drawStart = true;
+  startPosition(e);
+});
+
+canvas.addEventListener("touchend", finishedPosition);
+canvas.addEventListener("touchmove", draw);
 
 function clearCanvasAndState() {
   painting = false;  // Ngừng vẽ và reset path
