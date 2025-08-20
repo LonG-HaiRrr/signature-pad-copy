@@ -15,6 +15,53 @@ canvas {
   border-radius: 10px;
   border: 3px solid #1ad079;
 }
+/* Toggle switch cơ bản, không ảnh hưởng css khác */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Thanh trượt */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  transition: 0.2s;
+  border-radius: 28px;
+}
+
+/* Núm trượt */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+/* Trạng thái bật */
+.switch input:checked + .slider {
+  background-color: #0bc9c9;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
 
 button {
   margin: 5px 6px 5px;
@@ -65,7 +112,7 @@ button {
 }
 .settings {
   margin-bottom: 10px;
-  padding: 0 100px 0 300px;
+  padding: 10px 100px 10px 300px;
   background-color: rgb(54, 6, 99);
   color: rgb(216, 218, 132);
   font-size: 19px;
@@ -85,8 +132,16 @@ button {
 #strokeWidth {
     width:80px;
 }
+#modeLabel {
+  margin-left: 6px;
+  font-weight: bold;
+  color: #ffd24d;
+}
 #colorPicker {
   margin: 5px 6px 5px 0px;
+}
+.chuan_viettay {
+  transform-origin: top center; /* giữ điểm neo khi scale */ 
 }
 
 @media (max-width: 990px) {
@@ -126,6 +181,7 @@ button {
   .chuan_viettay {
     transform: scale(0.48) translateY(-0px);
     transform-origin: top center; /* giữ điểm neo khi scale */ 
+    margin-left: 0px;
   }
 
   #countdown {
