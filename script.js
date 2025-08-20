@@ -33,34 +33,40 @@ function finishedPosition() {
   saveState();
 }
 
-// function draw(e) {
-//   if (!painting) return;
-//   let clientX, clientY;
-//   if (e.type.startsWith("touch")) {
-//     clientX = e.touches[0].clientX;
-//     clientY = e.touches[0].clientY;
-//   } else {
-//     clientX = e.clientX;
-//     clientY = e.clientY;
-//   }
+function draw(e) {
+  if (!painting) return;
 
-//   context.lineWidth = 2;
-//   context.lineCap = "round";
-//   context.lineJoin = "round";
-//   context.strokeStyle = "black";
+  let clientX, clientY;
 
-//   const x = clientX - canvas.offsetLeft;
-//   const y = clientY - canvas.offsetTop;
+  if (e.type.startsWith("touch")) {
+    // Ngăn cuộn khi vẽ
+    e.preventDefault();
+    clientX = e.touches[0].clientX;
+    clientY = e.touches.clientY;
+  } else {
+    clientX = e.clientX;
+    clientY = e.clientY;
+  }
 
-//   if (painting) {
-//     context.lineTo(x, y);
-//     context.stroke();
-//     context.beginPath();
-//     context.moveTo(x, y);
-//   } else {
-//     context.moveTo(x, y);
-//   }
-// }
+  // Lấy giá trị từ UI
+  const lineWidth = parseFloat(strokeWidthSelect?.value) || 2;
+  const strokeColor = colorPickerInput?.value || "black";
+
+  context.lineWidth = lineWidth;
+  context.lineCap = "round";
+  context.lineJoin = "round";
+  context.strokeStyle = strokeColor;
+
+  const rect = canvas.getBoundingClientRect();
+  const x = clientX - rect.left;
+  const y = clientY - rect.top;
+
+  context.lineTo(x, y);
+  context.stroke();
+  context.beginPath();
+  context.moveTo(x, y);
+}
+
 
 function saveState() {
   localStorage.setItem("canvas", canvas.toDataURL());
@@ -255,43 +261,6 @@ strokeWidthSelect.addEventListener('change', function () {
   currentStrokeWidth = parseInt(this.value);
 });
 
-// Gán vào context mỗi lần vẽ
-function draw(e) {
-  if (!painting) return;
-
-  // chặn cuộn trên mobile khi đang kéo vẽ
-  if (e.cancelable) e.preventDefault();
-
-  // Lấy toạ độ đúng theo kích thước thật của canvas (khắc phục mobile)
-  const rect = canvas.getBoundingClientRect();
-  let cx, cy;
-  if (e.type.startsWith("touch")) {
-    cx = e.touches[0].clientX;
-    cy = e.touches.clientY;
-  } else {
-    cx = e.clientX;
-    cy = e.clientY;
-  }
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  const x = (cx - rect.left) * scaleX;
-  const y = (cy - rect.top) * scaleY;
-
-  // dùng giá trị bạn đã thêm (strokeWidthSelect, colorPickerInput)
-  const w = parseInt(strokeWidthSelect?.value || '2', 10);
-  const color = colorPickerInput?.value || 'black';
-
-  context.lineWidth = w;
-  context.lineCap = "round";
-  context.lineJoin = "round";
-  context.strokeStyle = color;
-
-  context.lineTo(x, y);
-  context.stroke();
-  context.beginPath();
-  context.moveTo(x, y);
-}
-
 
 // Tương tác nút màu
 colorPickerBtn.onclick = function() {
@@ -301,3 +270,4 @@ colorPickerInput.oninput = function() {
   currentStrokeColor = this.value;
   colorPickerBtn.style.background = this.value;
 }
+
