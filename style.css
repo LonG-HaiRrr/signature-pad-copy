@@ -108,7 +108,7 @@ button {
   .settings {
     padding: 0 0 0 10px;
     font-size: 10px;
-    background-color: #7a6d64;
+    background-color: #d15f0e;
     margin: 0;
   }
 
@@ -149,9 +149,6 @@ button {
   #strokeWidth {
       width:30px;
   }
-#colorPicker {
-  margin-top: 15px;
-}
 }
 
   
