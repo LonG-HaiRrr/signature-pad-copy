@@ -242,9 +242,10 @@ function draw(e) {
     clientX = e.clientX;
     clientY = e.clientY;
   }
-
+  // context.strokeStyle = '#af05f1ff';
+  // context.lineWidth = 30;
   context.lineWidth = currentStrokeWidth;
-  context.lineCap = "square";
+  context.lineCap = "round";
   context.lineJoin = "round";
   context.strokeStyle = currentStrokeColor;
 
