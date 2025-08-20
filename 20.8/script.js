@@ -1,9 +1,25 @@
 const canvas = document.getElementById("signature-pad");
 const clearBtn = document.getElementById("clear-btn");
+const answerBtn = document.getElementById('answerBtn');
+
 const context = canvas.getContext("2d");
 let display = document.getElementById("show");
 let painting = false;
 let drawStart = false;
+
+// DOM elements
+const startInput = document.getElementById('startChar');
+const endInput = document.getElementById('endChar');
+const startBtn = document.getElementById('startBtn');
+const infoBox = document.getElementById('infoBox');
+const kanaInfo = document.getElementById('kanaInfo');
+const audioBtn = document.getElementById('audioBtn');
+const nextBtn = document.getElementById('nextBtn');
+const countdown = document.getElementById('remainCount');
+
+const strokeWidthSelect = document.getElementById('strokeWidth');
+const colorPickerBtn = document.getElementById('colorPickerBtn');
+const colorPickerInput = document.getElementById('colorPicker');
 
 function startPosition(e) {
   painting = true;
@@ -80,13 +96,19 @@ canvas.addEventListener("touchstart", (e) => {
 canvas.addEventListener("touchend", finishedPosition);
 canvas.addEventListener("touchmove", draw);
 
+function clearCanvasAndState() {
+  painting = false;  // Ngừng vẽ và reset path
+  context.beginPath();
+  context.clearRect(0, 0, canvas.width, canvas.height);  // Xoá toàn bộ nét vẽ
+  setBackgroundImage();  // Vẽ lại nền
+  drawStart = false;  // Reset cờ
+  display.innerHTML = "";  // Xoá hiển thị phụ (nếu có)
+  saveState();  // Lưu lại state mới lên localStorage
+}
 clearBtn.addEventListener("click", () => {
-  drawStart = false;
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  setBackgroundImage();
-  saveState();
-  display.innerHTML = "";
+  clearCanvasAndState();
 });
+
 
 
 
@@ -138,16 +160,6 @@ const kanaList = [
     {kana: 'ら', romaji: 'ra'}, {kana: 'り', romaji: 'ri'}, {kana: 'る', romaji: 'ru'}, {kana: 'れ', romaji: 're'}, {kana: 'ろ', romaji: 'ro'},
     {kana: 'わ', romaji: 'wa'}, {kana: 'を', romaji: 'wo'}, {kana: 'ん', romaji: 'n'}
 ];
-
-// DOM elements
-const startInput = document.getElementById('startChar');
-const endInput = document.getElementById('endChar');
-const startBtn = document.getElementById('startBtn');
-const infoBox = document.getElementById('infoBox');
-const kanaInfo = document.getElementById('kanaInfo');
-const audioBtn = document.getElementById('audioBtn');
-const nextBtn = document.getElementById('nextBtn');
-const countdown = document.getElementById('remainCount');
 
 let activeList = [];
 let currentIdx = 0;
@@ -202,16 +214,16 @@ audioBtn.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
-    if (currentIdx + 1 < activeList.length) {
-        currentIdx++;
-        showCurrentKana();
-    } else {
-        alert('Đã hoàn thành tất cả các chữ cái!');
-        infoBox.style.display = 'none';
-    }
+  if (currentIdx + 1 < activeList.length) {
+    currentIdx++;
+    showCurrentKana();
+    clearCanvasAndState();
+  } else {
+    alert('Đã hoàn thành tất cả các chữ cái!');
+    infoBox.style.display = 'none';
+  }
 });
 
-const answerBtn = document.getElementById('answerBtn');
 
 answerBtn.addEventListener('click', () => {
   let curr = activeList[currentIdx];
@@ -238,3 +250,46 @@ answerBtn.addEventListener('click', () => {
 });
 
 
+// Lưu màu và kích thước hiện tại
+let currentStrokeColor = '#000000'; // mặc định ban đầu màu vẽ
+let currentStrokeWidth = 2;
+
+strokeWidthSelect.addEventListener('change', function () {
+  currentStrokeWidth = parseInt(this.value);
+});
+
+// Gán vào context mỗi lần vẽ
+function draw(e) {
+  if (!painting) return;
+  let clientX, clientY;
+  if (e.type.startsWith("touch")) {
+    clientX = e.touches[0].clientX;
+    clientY = e.touches.clientY;
+  } else {
+    clientX = e.clientX;
+    clientY = e.clientY;
+  }
+  context.lineWidth = currentStrokeWidth;
+  context.lineCap = "round";
+  context.lineJoin = "round";
+  context.strokeStyle = currentStrokeColor;
+  const x = clientX - canvas.offsetLeft;
+  const y = clientY - canvas.offsetTop;
+  if (painting) {
+    context.lineTo(x, y);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(x, y);
+  } else {
+    context.moveTo(x, y);
+  }
+}
+
+// Tương tác nút màu
+colorPickerBtn.onclick = function() {
+  colorPickerInput.click();
+}
+colorPickerInput.oninput = function() {
+  currentStrokeColor = this.value;
+  colorPickerBtn.style.background = this.value;
+}
