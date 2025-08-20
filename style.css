@@ -82,8 +82,12 @@ button {
   color: #000000;
   font-weight: bolder;
 }
-  
-
+#strokeWidth {
+    width:80px;
+}
+#colorPicker {
+  margin: 5px 6px 5px 0px;
+}
 
 @media (max-width: 990px) {
   .zoneve {
@@ -134,6 +138,18 @@ button {
   #clear-btn {
     margin: 5px 6px;
   }
+  button {
+  margin: 5px 6px 5px 0px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #0bc9c9;
+  border: none;
+  border-radius: 5px;
+  }
+  #strokeWidth {
+      width:30px;
+  }
+
 }
 
   
